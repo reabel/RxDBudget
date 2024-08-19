@@ -14,6 +14,20 @@ Note: Cleverstack-cli was last updated in 2016. This project has been renamed an
 - [ ] Look at Backend and Frontend basis for project ~~and review security updates~~
   - [ ] Strip Packages as necessary from Clever folder
 
+## Cleverstack features / Highlights
+* NodeJS Async Non-Blocking Core.
+* Modular Coding Structure based on NPM.
+* ~~Grunt powered tasks, including Server with Live Restart using nodemon.~~
+  * should be irrevelant since modern node allows live restart anyways
+* Databases supported: MySQL, PostgreSQL, SQLite or MongoDB.
+  * Going to be focusing on one single DB for this project
+* Official ORM (Object Relational Mapper) Module provides an enterprise SQL based solution out of the box.
+* Official ODM (Object Document Mapper) Module provides an enterprise NoSQL based solution out of the box.
+  * Not necessarily applicable to this application but could be interesting
+* Clustered application with high Concurrency out of the box.
+* NodeJS Background Tasks Module which allows CPU intensive (blocking) operations to take place in separate processes, allowing your HTTP Web Server Processes to continue serving HTTP Requests.
+* Unit & E2E (Integration) Testing with Mocha and Request.
+
 ## Frontend Packages - Clever
 
 The bundle in this case elected to use angular, which is something we could use again since it's regaining a bit of popularity lately it seems.

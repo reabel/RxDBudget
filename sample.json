@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "name": "Car loan",
+        "price": 450.00
+    },
+    {
+        "id": 2,
+        "name": "House rent",
+        "price": 1000.00
+    },
+    {
+        "id": 3,
+        "name": "Groceries",
+        "price": 200.00
+    },
+    {
+        "id": 4,
+        "name": "Electricity",
+        "price": 100.00
+    },
+    {
+        "id": 5,
+        "name": "Water",
+        "price": 50.00
+    },
+    {
+        "id": 6,
+        "name": "Internet",
+        "price": 50.00
+    },
+    {
+        "id": 7,
+        "name": "Phone",
+        "price": 50.00
+    },
+    {
+        "id": 8,
+        "name": "Gas",
+        "price": 50.00
+    },
+    {
+        "id": 9,
+        "name": "Insurance",
+        "price": 100.00
+    },
+    {
+        "id": 10,
+        "name": "Savings",
+        "price": 100.00
+    }
+]
