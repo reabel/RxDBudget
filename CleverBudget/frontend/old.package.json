@@ -1,0 +1,44 @@
+{
+  "private": true,
+  "name": "angular-seed",
+  "description": "Cleverstack Angular-Seed",
+  "version": "1.1.5",
+  "author": {
+    "name": "CleverStack",
+    "email": "admin@cleverstack.io",
+    "web": "http://cleverstack.io"
+  },
+  "collaborators": [
+    "Richard Gustin <richard.gustin86@gmail.com>",
+    "Simon W. Jackson <simon@clevertech.biz>",
+    "Daniel Young <young.daniel88@gmail.com>",
+    "Daniel Durrante <daniel.durante@clevertech.biz>",
+    "Sam Deering <sam@clevertech.biz>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CleverStack/angular-seed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CleverStack/angular-seed/issues"
+  },
+  "keywords": [
+    "cleverstack",
+    "framework",
+    "seed",
+    "angular"
+  ],
+  "license": "BSD-2-Clause",
+  "dependencies": {},
+  "devDependencies": {
+  },
+  "scripts": {
+    "setup": "node scripts/setup",
+    "setup-protractor": "grunt webdriver:update",
+    "start": "grunt server",
+    "bs-tunnel-karma": "sh scripts/bs-tunnel-karma.sh",
+    "bs-tunnel": "sh scripts/bs-tunnel-connect.sh",
+    "test": "grunt test:travis",
+    "testos": "node scripts/testos"
+  }
+}
