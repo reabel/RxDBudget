@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BudgetTable from './components/BudgetTable.vue'
+import BudgetForm from './components/BudgetForm.vue'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import BudgetTable from './components/BudgetTable.vue'
       <button>Import ...</button>
       <button>Export ...</button>
    </menu>
+   <BudgetForm />
    <BudgetTable />
 </template>
 
