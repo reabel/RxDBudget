@@ -21,6 +21,12 @@
     <input type="checkbox" id="recurring" name="recurring">
   </div>
 
+  <div>
+    <label for="date">Date</label>
+    <input type="date" id="date" name="date">
+  </div>
+
+
 </template>
 
 <style scoped>
