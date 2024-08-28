@@ -3,17 +3,19 @@
  */
 
 export interface LineItem {
-    id: string;
+    id: number;
     name: string;
     type: string;
     price: number;
+    recurring?: boolean;
     quantity?: number;
+    date? : string;
 }
 
 export interface LineItemWithTotal extends LineItem {
     total: number;
 }
 
-export interface LiteItems {
+export interface LineItems {
     items: LineItem[];
 }
