@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 
+import { useBudgetStore } from '../stores/budgetstore';
+// access the `store` variable anywhere in the component ✨
+const store = useBudgetStore();
+//comes in as a ref, but how do I define the type of the content in ref?
+const { lineItems } = storeToRefs(store);
 </script>
 
 <template>
@@ -8,22 +14,20 @@
   <table>
     <thead>
       <tr>
+        <th>Name</th>
         <th>Category</th>
         <th>Amount</th>
+        <th>Recurring?</th>
+        <th>Date</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Food</td>
-        <td>$100</td>
-      </tr>
-      <tr>
-        <td>Transportation</td>
-        <td>$50</td>
-      </tr>
-      <tr>
-        <td>Entertainment</td>
-        <td>$150</td>
+      <tr v-for="item in lineItems" as={lineItem}>
+        <td>{{item.name}}</td>
+        <td>{{item.type}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.recurring}}</td>
+        <td>{{item.date}}</td>
       </tr>
     </tbody>
   </table>
