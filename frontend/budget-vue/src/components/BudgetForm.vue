@@ -2,13 +2,18 @@
 import { useBudgetStore } from '../stores/budgetstore';
 import { ref } from 'vue';
 const store = useBudgetStore();
+const name= ref('');
 const category = ref('');
+const amount = ref(0);
+const recurring = ref(false);
+const date = ref(new Date());
+
 const submit = () => {
   console.log('submitting');
   store.addLineItem({
-    name: 'test',
+    name: name.value,
     type: category.value,
-    price: 100,
+    price: amount.value,
     recurring: false,
     date: new Date(),
   });
@@ -19,23 +24,27 @@ const submit = () => {
   <h1>Budget Form</h1>
   <div style="display: flex">
     <div>
+      <label for="name">Name</label>
+      <input type="select" v-model="name" />
+    </div>
+    <div>
       <label for="category">Category</label>
-      <input type="select" id="category" :value="category" name="category" />
+      <input type="select" v-model="category" />
     </div>
 
     <div>
       <label for="amount">Amount</label>
-      <input type="currency" id="amount" name="amount" />
+      <input type="currency" v-model="amount" />
     </div>
 
     <div>
       <label for="recurring">Recurring?</label>
-      <input type="checkbox" id="recurring" name="recurring" />
+      <input type="checkbox" v-model="recurring" />
     </div>
 
     <div>
       <label for="date">Date</label>
-      <input type="date" id="date" name="date" />
+      <input type="date" v-model="date" />
     </div>
   </div>
   <button @click="submit">Submit</button>
