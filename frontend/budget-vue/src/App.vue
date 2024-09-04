@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import BudgetTable from './components/BudgetTable.vue'
 import BudgetForm from './components/BudgetForm.vue'
+import { useBudgetStore } from './stores/budgetstore';
+import { storeToRefs } from 'pinia';
+const store = useBudgetStore();
+const { displayForm } = storeToRefs(store);
 </script>
 
 <template>
   <!-- <HelloWorld msg="Vite + Vue" /> -->
    <menu>
-      <button>Add Line Item</button>
+      <button v-if="!displayForm" @click="store.toggleDisplayForm();">Add Line ...</button>
+      <button v-else @click="store.toggleDisplayForm()">Close Form</button>
       <button>Import ...</button>
       <button>Export ...</button>
    </menu>
-   <BudgetForm />
+   <BudgetForm v-if="!!displayForm" />
    <BudgetTable />
 </template>
 

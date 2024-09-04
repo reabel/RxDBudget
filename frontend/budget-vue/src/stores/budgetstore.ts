@@ -1,13 +1,24 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 //replace with @ syntax later
 //import { LineItem } from '../../../../types/lineitem';
 
-export const useBudgetStore = defineStore('budget', {
+export const useBudgetStore = defineStore("budget", {
   state: () => {
-    return { lineItems: [
-        {id: 1, name: 'Item 1', type: 'expense', price: 100, quantity: 1, recurring: true, date: '2021-01-01'},
-        {id: 2, name: 'Item 2', type: 'expense', price: 200, quantity: 1},
-    ] }
+    return {
+      lineItems: [
+        {
+          id: 1,
+          name: "Item 1",
+          type: "expense",
+          price: 100,
+          quantity: 1,
+          recurring: true,
+          date: "2021-01-01",
+        },
+        { id: 2, name: "Item 2", type: "expense", price: 200, quantity: 1 },
+      ],
+      displayForm: false,
+    };
   },
   // could also be defined as
   // state: () => ({ count: 0 })
@@ -15,5 +26,9 @@ export const useBudgetStore = defineStore('budget', {
     addLineItem(item: any) {
       this.lineItems.push(item);
     },
+    toggleDisplayForm() {
+      console.log("toggleDisplayForm", this.displayForm);
+      this.displayForm = !this.displayForm;
+    },
   },
-})
+});
