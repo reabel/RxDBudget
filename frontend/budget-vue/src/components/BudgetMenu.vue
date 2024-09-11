@@ -2,7 +2,7 @@
 import { useBudgetStore } from '../stores/budgetstore';
 import { storeToRefs } from 'pinia';
 const store = useBudgetStore();
-const { displayForm, lineItems } = storeToRefs(store);
+const { displayForm } = storeToRefs(store);
 const downloadItem = (item?: any) => {
   console.log('Download item', item);
 
@@ -13,10 +13,10 @@ const downloadItem = (item?: any) => {
         // link.click()
         // URL.revokeObjectURL(link.href)
 
-  let text = JSON.stringify(lineItems);
-  let filename = 'budgets.json';
+  let text = store.formatAsCSV()
+  let filename = 'budgets.csv';
   let element = document.createElement('a');
-  element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('href', 'data:application/csv;charset=utf-8,' + encodeURIComponent(text));
   element.setAttribute('download', filename);
 
   element.style.display = 'none';
@@ -27,6 +27,7 @@ const downloadItem = (item?: any) => {
 }
 </script>
 <template>
+    <h3>RxD Budget</h3>
     <menu>
       <button v-if="!displayForm" @click="store.toggleDisplayForm();">Add Line ...</button>
       <button v-else @click="store.toggleDisplayForm()">Close Form</button>
@@ -36,6 +37,14 @@ const downloadItem = (item?: any) => {
 </template>
 
 <style scoped>
+
+/* Top menu, header text, aligned with top-left of screen */
+h3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0.5em;
+}
 /* Top menu, align with top-right of screen, no background */
 menu {
   position: fixed;

@@ -1,22 +1,11 @@
 import { defineStore } from "pinia";
 //replace with @ syntax later
-//import { LineItem } from '../../../../types/lineitem';
+import { LineItem } from '../../../../types/lineitem';
 
 export const useBudgetStore = defineStore("budget", {
   state: () => {
     return {
-      lineItems: [
-        {
-          id: 1,
-          name: "Item 1",
-          type: "expense",
-          price: 100,
-          quantity: 1,
-          recurring: true,
-          date: "2021-01-01",
-        },
-        { id: 2, name: "Item 2", type: "expense", price: 200, quantity: 1 },
-      ],
+      lineItems: Array<LineItem>(),
       displayForm: false,
     };
   },
@@ -30,5 +19,12 @@ export const useBudgetStore = defineStore("budget", {
       console.log("toggleDisplayForm", this.displayForm);
       this.displayForm = !this.displayForm;
     },
+    formatAsCSV() {
+      let csv = "ID,Name,Type,Price,Quantity,Recurring,Date\n";
+      this.lineItems.forEach((item) => {
+        csv += `${item.id},${item.name},${item.type},${item.price},${item.quantity},${item.recurring},${item.date}\n`;
+      });
+      return csv;
+    }
   },
 });

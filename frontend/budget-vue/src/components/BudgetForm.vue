@@ -14,8 +14,8 @@ const submit = () => {
     name: name.value,
     type: category.value,
     price: amount.value,
-    recurring: false,
-    date: new Date(),
+    recurring: recurring.value,
+    date: date.value,
   });
 };
 </script>
