@@ -35,7 +35,10 @@ const { lineItems } = storeToRefs(store);
 </template>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
+/* Align the table to the middle of the screen */
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 80%;
 }
 </style>
