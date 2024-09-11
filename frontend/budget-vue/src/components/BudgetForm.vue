@@ -51,11 +51,13 @@ const submit = () => {
 <style scoped>
 form {
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: 50%;
+  left: 50%;
   padding: 1em;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+  background-color: #520909e9;
+  border-radius: 5%;
 }
 </style>

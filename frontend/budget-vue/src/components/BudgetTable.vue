@@ -59,6 +59,20 @@ const { lineItems } = storeToRefs(store);
 }
 
 .budget-table thead th {
-  background-color: #7f1818;
+  background-color: #7f181852;
+}
+/* Add alternating row colors with darker shades */
+.budget-table tbody tr:nth-child(odd) {
+  background-color: rgba(51, 51, 51, 0.4); /* Darker shade for odd rows with 80% opacity */
+  color: white; /* Ensure text is readable on dark background */
+}
+
+.budget-table tbody tr:nth-child(even) {
+  background-color: rgba(69, 69, 69, 0.4); /* Darker shade for odd rows with 80% opacity */
+  color: white; /* Ensure text is readable on dark background */
+}
+
+.budget-table tbody tr:hover {
+  background-color: rgba(100, 100, 100, 0.4); /* Change background color on hover */
 }
 </style>
