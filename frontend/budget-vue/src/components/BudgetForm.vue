@@ -14,8 +14,8 @@ const submit = () => {
     name: name.value,
     type: category.value,
     price: amount.value,
-    recurring: false,
-    date: new Date(),
+    recurring: recurring.value,
+    date: date.value,
   });
 };
 </script>
@@ -51,11 +51,13 @@ const submit = () => {
 <style scoped>
 form {
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: 50%;
+  left: 50%;
   padding: 1em;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+  background-color: #520909e9;
+  border-radius: 5%;
 }
 </style>

@@ -9,7 +9,7 @@ export interface LineItem {
     price: number;
     recurring?: boolean;
     quantity?: number;
-    date? : string;
+    date? : Date;
 }
 
 export interface LineItemWithTotal extends LineItem {
