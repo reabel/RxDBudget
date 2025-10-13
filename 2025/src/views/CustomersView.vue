@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useCustomerStore } from '../stores/customerStore';
+import { exportCustomers, type ExportFormat } from '../utils/exportUtils';
+import { importCustomers } from '../utils/importUtils';
 
 const customerStore = useCustomerStore();
 const searchTerm = ref('');
 const showAddModal = ref(false);
 const selectedCustomer = ref(null as any);
+const fileInput = ref<HTMLInputElement | null>(null);
 
 const filteredCustomers = computed(() => {
   if (!searchTerm.value) return customerStore.allCustomers;
@@ -51,15 +54,74 @@ function viewCustomer(customer: any) {
 function closeDetails() {
   selectedCustomer.value = null;
 }
+
+function handleExport(format: ExportFormat) {
+  exportCustomers(customerStore.allCustomers, format);
+}
+
+function triggerFileInput() {
+  fileInput.value?.click();
+}
+
+async function handleImport(event: Event) {
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+  
+  if (!file) return;
+
+  try {
+    const importedCustomers = await importCustomers(file);
+    
+    // Add imported customers to store
+    importedCustomers.forEach(customer => {
+      customerStore.addCustomer({
+        firstName: customer.firstName,
+        lastName: customer.lastName,
+        email: customer.email,
+        phone: customer.phone,
+        address: customer.address,
+        vehicles: customer.vehicles
+      });
+    });
+
+    alert(`Successfully imported ${importedCustomers.length} customers!`);
+  } catch (error) {
+    alert('Failed to import customers. Please check the file format.');
+    console.error(error);
+  }
+
+  // Reset input
+  if (target) target.value = '';
+}
 </script>
 
 <template>
   <div class="customers-view">
     <div class="header">
       <h1 class="page-title">Customer Management</h1>
-      <button class="btn btn-primary" @click="openAddModal">
-        ➕ Add Customer
-      </button>
+      <div class="header-actions">
+        <div class="export-buttons">
+          <button class="btn btn-secondary" @click="handleExport('xlsx')">
+            📊 Export XLSX
+          </button>
+          <button class="btn btn-secondary" @click="handleExport('csv')">
+            📄 Export CSV
+          </button>
+        </div>
+        <button class="btn btn-secondary" @click="triggerFileInput">
+          📥 Import
+        </button>
+        <input
+          ref="fileInput"
+          type="file"
+          accept=".xlsx,.xls,.csv"
+          style="display: none"
+          @change="handleImport"
+        />
+        <button class="btn btn-primary" @click="openAddModal">
+          ➕ Add Customer
+        </button>
+      </div>
     </div>
 
     <div class="search-bar">
@@ -183,6 +245,20 @@ function closeDetails() {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .page-title {

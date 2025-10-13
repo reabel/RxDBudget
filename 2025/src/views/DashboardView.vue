@@ -4,6 +4,7 @@ import { useCustomerStore } from '../stores/customerStore';
 import { usePartStore } from '../stores/partStore';
 import { useAppointmentStore } from '../stores/appointmentStore';
 import { RouterLink } from 'vue-router';
+import { exportAllData, type ExportFormat } from '../utils/exportUtils';
 
 const customerStore = useCustomerStore();
 const partStore = usePartStore();
@@ -22,6 +23,15 @@ const stats = computed(() => ({
 
 const todayAppointments = computed(() => appointmentStore.todayAppointments);
 const upcomingAppointments = computed(() => appointmentStore.upcomingAppointments.slice(0, 5));
+
+function handleExportAll(format: ExportFormat) {
+  exportAllData(
+    customerStore.allCustomers,
+    partStore.allParts,
+    appointmentStore.allAppointments,
+    format
+  );
+}
 </script>
 
 <template>
@@ -143,6 +153,28 @@ const upcomingAppointments = computed(() => appointmentStore.upcomingAppointment
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>📤 Data Management</h2>
+        </div>
+        <div class="card-body">
+          <p class="data-management-description">
+            Export all your data (customers, parts, appointments, and service intervals) to a single file for backup or analysis.
+          </p>
+          <div class="export-buttons-large">
+            <button class="btn btn-primary" @click="handleExportAll('xlsx')">
+              📊 Export All Data (XLSX)
+            </button>
+            <button class="btn btn-secondary" @click="handleExportAll('csv')">
+              📄 Export All Data (CSV)
+            </button>
+          </div>
+          <p class="data-management-note">
+            XLSX format includes all data in separate sheets. CSV format exports multiple files.
+          </p>
         </div>
       </div>
     </div>
@@ -344,6 +376,32 @@ const upcomingAppointments = computed(() => appointmentStore.upcomingAppointment
   border-color: var(--warning-color);
 }
 
+.data-management-description {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.export-buttons-large {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.export-buttons-large .btn {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  min-width: 200px;
+}
+
+.data-management-note {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-style: italic;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .stats-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -358,6 +416,14 @@ const upcomingAppointments = computed(() => appointmentStore.upcomingAppointment
 
   .content-grid {
     grid-template-columns: 1fr;
+  }
+
+  .export-buttons-large {
+    flex-direction: column;
+  }
+
+  .export-buttons-large .btn {
+    min-width: 100%;
   }
 }
 </style>

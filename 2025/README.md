@@ -41,6 +41,13 @@ A comprehensive automotive garage management application built with Vue 3, TypeS
 - Low stock warnings
 - Quick navigation to critical items
 
+### 📥📤 Import/Export Data
+- **Export to XLSX or CSV** - Export customers, parts, and appointments individually
+- **Bulk export** - Export all data at once from Dashboard
+- **Import from files** - Import customers, parts, and appointments from XLSX or CSV files
+- **Multi-sheet support** - XLSX exports include all data types in separate sheets
+- **Data backup** - Easily backup and restore your garage data
+
 ## 🚀 Getting Started
 
 ### Prerequisites

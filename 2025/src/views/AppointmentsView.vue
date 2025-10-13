@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useAppointmentStore } from '../stores/appointmentStore';
+import { exportAppointments, type ExportFormat } from '../utils/exportUtils';
+import { importAppointments } from '../utils/importUtils';
 
 const appointmentStore = useAppointmentStore();
 const showAddModal = ref(false);
 const selectedStatus = ref('all');
+const fileInput = ref<HTMLInputElement | null>(null);
 
 const statusOptions = ['all', 'scheduled', 'in-progress', 'completed', 'cancelled'];
 
@@ -78,15 +81,81 @@ function formatTime(date: Date) {
 function getStatusClass(status: string) {
   return status.toLowerCase().replace('-', '');
 }
+
+function handleExport(format: ExportFormat) {
+  exportAppointments(appointmentStore.allAppointments, format);
+}
+
+function triggerFileInput() {
+  fileInput.value?.click();
+}
+
+async function handleImport(event: Event) {
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+  
+  if (!file) return;
+
+  try {
+    const importedAppointments = await importAppointments(file);
+    
+    // Add imported appointments to store
+    importedAppointments.forEach(appointment => {
+      appointmentStore.addAppointment({
+        customerId: appointment.customerId,
+        customerName: appointment.customerName,
+        vehicleId: appointment.vehicleId,
+        vehicleInfo: appointment.vehicleInfo,
+        appointmentDate: appointment.appointmentDate,
+        estimatedDuration: appointment.estimatedDuration,
+        status: appointment.status,
+        serviceType: appointment.serviceType,
+        description: appointment.description,
+        estimatedCost: appointment.estimatedCost,
+        parts: appointment.parts,
+        labor: appointment.labor,
+        notes: appointment.notes
+      });
+    });
+
+    alert(`Successfully imported ${importedAppointments.length} appointments!`);
+  } catch (error) {
+    alert('Failed to import appointments. Please check the file format.');
+    console.error(error);
+  }
+
+  // Reset input
+  if (target) target.value = '';
+}
 </script>
 
 <template>
   <div class="appointments-view">
     <div class="header">
       <h1 class="page-title">Service Appointments</h1>
-      <button class="btn btn-primary" @click="openAddModal">
-        ➕ Schedule Appointment
-      </button>
+      <div class="header-actions">
+        <div class="export-buttons">
+          <button class="btn btn-secondary" @click="handleExport('xlsx')">
+            📊 Export XLSX
+          </button>
+          <button class="btn btn-secondary" @click="handleExport('csv')">
+            📄 Export CSV
+          </button>
+        </div>
+        <button class="btn btn-secondary" @click="triggerFileInput">
+          📥 Import
+        </button>
+        <input
+          ref="fileInput"
+          type="file"
+          accept=".xlsx,.xls,.csv"
+          style="display: none"
+          @change="handleImport"
+        />
+        <button class="btn btn-primary" @click="openAddModal">
+          ➕ Schedule Appointment
+        </button>
+      </div>
     </div>
 
     <div class="filters">
@@ -193,6 +262,20 @@ function getStatusClass(status: string) {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .page-title {

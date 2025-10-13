@@ -22,6 +22,10 @@ Vue 3 + TypeScript application for managing an automotive garage with customer t
 - ✅ Dashboard with overview of all operations
 - ✅ Responsive design for all screen sizes
 - ✅ Sample data for immediate testing
+- ✅ Import/Export functionality for all data (XLSX and CSV formats)
+  - Export customers, parts, and appointments individually or all at once
+  - Import data from XLSX or CSV files with validation
+  - Multi-sheet XLSX support for comprehensive data backup
 
 ## Quick Start
 ```bash

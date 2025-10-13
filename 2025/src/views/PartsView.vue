@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { usePartStore } from '../stores/partStore';
+import { exportParts, type ExportFormat } from '../utils/exportUtils';
+import { importParts } from '../utils/importUtils';
 
 const partStore = usePartStore();
 const searchTerm = ref('');
 const showAddModal = ref(false);
 const selectedCategory = ref('all');
+const fileInput = ref<HTMLInputElement | null>(null);
 
 const categories = computed(() => {
   const cats = new Set(partStore.allParts.map(p => p.category));
@@ -75,6 +78,51 @@ function getStockStatus(part: any) {
   return 'in-stock';
 }
 
+function handleExport(format: ExportFormat) {
+  exportParts(partStore.allParts, format);
+}
+
+function triggerFileInput() {
+  fileInput.value?.click();
+}
+
+async function handleImport(event: Event) {
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+  
+  if (!file) return;
+
+  try {
+    const importedParts = await importParts(file);
+    
+    // Add imported parts to store
+    importedParts.forEach(part => {
+      partStore.addPart({
+        partNumber: part.partNumber,
+        name: part.name,
+        description: part.description,
+        category: part.category,
+        manufacturer: part.manufacturer,
+        cost: part.cost,
+        retailPrice: part.retailPrice,
+        quantityInStock: part.quantityInStock,
+        reorderLevel: part.reorderLevel,
+        reorderQuantity: part.reorderQuantity,
+        supplier: part.supplier,
+        location: part.location
+      });
+    });
+
+    alert(`Successfully imported ${importedParts.length} parts!`);
+  } catch (error) {
+    alert('Failed to import parts. Please check the file format.');
+    console.error(error);
+  }
+
+  // Reset input
+  if (target) target.value = '';
+}
+
 function getStockLabel(part: any) {
   if (part.quantityInStock === 0) return 'Out of Stock';
   if (part.quantityInStock <= part.reorderLevel) return 'Low Stock';
@@ -86,9 +134,29 @@ function getStockLabel(part: any) {
   <div class="parts-view">
     <div class="header">
       <h1 class="page-title">Parts Inventory</h1>
-      <button class="btn btn-primary" @click="openAddModal">
-        ➕ Add Part
-      </button>
+      <div class="header-actions">
+        <div class="export-buttons">
+          <button class="btn btn-secondary" @click="handleExport('xlsx')">
+            📊 Export XLSX
+          </button>
+          <button class="btn btn-secondary" @click="handleExport('csv')">
+            📄 Export CSV
+          </button>
+        </div>
+        <button class="btn btn-secondary" @click="triggerFileInput">
+          📥 Import
+        </button>
+        <input
+          ref="fileInput"
+          type="file"
+          accept=".xlsx,.xls,.csv"
+          style="display: none"
+          @change="handleImport"
+        />
+        <button class="btn btn-primary" @click="openAddModal">
+          ➕ Add Part
+        </button>
+      </div>
     </div>
 
     <div class="filters">
@@ -242,6 +310,20 @@ function getStockLabel(part: any) {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .page-title {
