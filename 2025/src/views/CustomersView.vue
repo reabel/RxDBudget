@@ -71,20 +71,39 @@ async function handleImport(event: Event) {
 
   try {
     const importedCustomers = await importCustomers(file);
+    let addedCount = 0;
+    let updatedCount = 0;
     
-    // Add imported customers to store
+    // Add or update imported customers in store
     importedCustomers.forEach(customer => {
-      customerStore.addCustomer({
-        firstName: customer.firstName,
-        lastName: customer.lastName,
-        email: customer.email,
-        phone: customer.phone,
-        address: customer.address,
-        vehicles: customer.vehicles
-      });
+      const existingCustomer = customerStore.allCustomers.find(c => c.id === customer.id);
+      
+      if (existingCustomer) {
+        // Update existing customer
+        customerStore.updateCustomer(customer.id, {
+          firstName: customer.firstName,
+          lastName: customer.lastName,
+          email: customer.email,
+          phone: customer.phone,
+          address: customer.address,
+          vehicles: customer.vehicles
+        });
+        updatedCount++;
+      } else {
+        // Add new customer
+        customerStore.addCustomer({
+          firstName: customer.firstName,
+          lastName: customer.lastName,
+          email: customer.email,
+          phone: customer.phone,
+          address: customer.address,
+          vehicles: customer.vehicles
+        });
+        addedCount++;
+      }
     });
 
-    alert(`Successfully imported ${importedCustomers.length} customers!`);
+    alert(`Successfully imported ${importedCustomers.length} customers!\n${addedCount} added, ${updatedCount} updated.`);
   } catch (error) {
     alert('Failed to import customers. Please check the file format.');
     console.error(error);

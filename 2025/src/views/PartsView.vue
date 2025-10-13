@@ -94,26 +94,51 @@ async function handleImport(event: Event) {
 
   try {
     const importedParts = await importParts(file);
+    let addedCount = 0;
+    let updatedCount = 0;
     
-    // Add imported parts to store
+    // Add or update imported parts in store
     importedParts.forEach(part => {
-      partStore.addPart({
-        partNumber: part.partNumber,
-        name: part.name,
-        description: part.description,
-        category: part.category,
-        manufacturer: part.manufacturer,
-        cost: part.cost,
-        retailPrice: part.retailPrice,
-        quantityInStock: part.quantityInStock,
-        reorderLevel: part.reorderLevel,
-        reorderQuantity: part.reorderQuantity,
-        supplier: part.supplier,
-        location: part.location
-      });
+      const existingPart = partStore.allParts.find(p => p.id === part.id);
+      
+      if (existingPart) {
+        // Update existing part
+        partStore.updatePart(part.id, {
+          partNumber: part.partNumber,
+          name: part.name,
+          description: part.description,
+          category: part.category,
+          manufacturer: part.manufacturer,
+          cost: part.cost,
+          retailPrice: part.retailPrice,
+          quantityInStock: part.quantityInStock,
+          reorderLevel: part.reorderLevel,
+          reorderQuantity: part.reorderQuantity,
+          supplier: part.supplier,
+          location: part.location
+        });
+        updatedCount++;
+      } else {
+        // Add new part
+        partStore.addPart({
+          partNumber: part.partNumber,
+          name: part.name,
+          description: part.description,
+          category: part.category,
+          manufacturer: part.manufacturer,
+          cost: part.cost,
+          retailPrice: part.retailPrice,
+          quantityInStock: part.quantityInStock,
+          reorderLevel: part.reorderLevel,
+          reorderQuantity: part.reorderQuantity,
+          supplier: part.supplier,
+          location: part.location
+        });
+        addedCount++;
+      }
     });
 
-    alert(`Successfully imported ${importedParts.length} parts!`);
+    alert(`Successfully imported ${importedParts.length} parts!\n${addedCount} added, ${updatedCount} updated.`);
   } catch (error) {
     alert('Failed to import parts. Please check the file format.');
     console.error(error);

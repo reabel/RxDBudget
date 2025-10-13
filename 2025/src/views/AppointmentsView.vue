@@ -98,27 +98,55 @@ async function handleImport(event: Event) {
 
   try {
     const importedAppointments = await importAppointments(file);
+    let addedCount = 0;
+    let updatedCount = 0;
     
-    // Add imported appointments to store
+    // Add or update imported appointments in store
     importedAppointments.forEach(appointment => {
-      appointmentStore.addAppointment({
-        customerId: appointment.customerId,
-        customerName: appointment.customerName,
-        vehicleId: appointment.vehicleId,
-        vehicleInfo: appointment.vehicleInfo,
-        appointmentDate: appointment.appointmentDate,
-        estimatedDuration: appointment.estimatedDuration,
-        status: appointment.status,
-        serviceType: appointment.serviceType,
-        description: appointment.description,
-        estimatedCost: appointment.estimatedCost,
-        parts: appointment.parts,
-        labor: appointment.labor,
-        notes: appointment.notes
-      });
+      const existingAppointment = appointmentStore.allAppointments.find(a => a.id === appointment.id);
+      
+      if (existingAppointment) {
+        // Update existing appointment
+        appointmentStore.updateAppointment(appointment.id, {
+          customerId: appointment.customerId,
+          customerName: appointment.customerName,
+          vehicleId: appointment.vehicleId,
+          vehicleInfo: appointment.vehicleInfo,
+          appointmentDate: appointment.appointmentDate,
+          estimatedDuration: appointment.estimatedDuration,
+          status: appointment.status,
+          serviceType: appointment.serviceType,
+          description: appointment.description,
+          estimatedCost: appointment.estimatedCost,
+          actualCost: appointment.actualCost,
+          assignedTechnician: appointment.assignedTechnician,
+          parts: appointment.parts,
+          labor: appointment.labor,
+          notes: appointment.notes
+        });
+        updatedCount++;
+      } else {
+        // Add new appointment
+        appointmentStore.addAppointment({
+          customerId: appointment.customerId,
+          customerName: appointment.customerName,
+          vehicleId: appointment.vehicleId,
+          vehicleInfo: appointment.vehicleInfo,
+          appointmentDate: appointment.appointmentDate,
+          estimatedDuration: appointment.estimatedDuration,
+          status: appointment.status,
+          serviceType: appointment.serviceType,
+          description: appointment.description,
+          estimatedCost: appointment.estimatedCost,
+          parts: appointment.parts,
+          labor: appointment.labor,
+          notes: appointment.notes
+        });
+        addedCount++;
+      }
     });
 
-    alert(`Successfully imported ${importedAppointments.length} appointments!`);
+    alert(`Successfully imported ${importedAppointments.length} appointments!\n${addedCount} added, ${updatedCount} updated.`);
   } catch (error) {
     alert('Failed to import appointments. Please check the file format.');
     console.error(error);
