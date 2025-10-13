@@ -157,7 +157,8 @@ const upcomingAppointments = computed(() => appointmentStore.upcomingAppointment
 .page-title {
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #333;
+  color: var(--text-primary);
+  text-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
 }
 
 .stats-grid {
@@ -168,13 +169,14 @@ const upcomingAppointments = computed(() => appointmentStore.upcomingAppointment
 }
 
 .stat-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 1.5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-color);
   transition: all 0.2s;
 }
 
@@ -184,15 +186,18 @@ const upcomingAppointments = computed(() => appointmentStore.upcomingAppointment
 
 .stat-card.clickable:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+  border-color: var(--primary-color);
 }
 
 .stat-card.alert {
-  border-left: 4px solid #ff6b6b;
+  border-left: 4px solid var(--primary-color);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
 .stat-card.warning {
-  border-left: 4px solid #ffa500;
+  border-left: 4px solid var(--warning-color);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
 }
 
 .stat-icon {
@@ -207,13 +212,13 @@ const upcomingAppointments = computed(() => appointmentStore.upcomingAppointment
 .stat-value {
   font-size: 2rem;
   font-weight: 700;
-  color: #333;
+  color: var(--text-primary);
   line-height: 1;
 }
 
 .stat-label {
   font-size: 0.875rem;
-  color: #666;
+  color: var(--text-secondary);
   margin-top: 0.25rem;
 }
 
@@ -224,36 +229,39 @@ const upcomingAppointments = computed(() => appointmentStore.upcomingAppointment
 }
 
 .card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-color);
   overflow: hidden;
 }
 
 .card-header {
   padding: 1.5rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--bg-darker);
 }
 
 .card-header h2 {
   font-size: 1.25rem;
   margin: 0;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .view-all-link {
-  color: #667eea;
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: 500;
   font-size: 0.875rem;
-  transition: color 0.2s;
+  transition: all 0.2s;
 }
 
 .view-all-link:hover {
-  color: #764ba2;
+  color: var(--primary-light);
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
 }
 
 .card-body {
@@ -263,7 +271,7 @@ const upcomingAppointments = computed(() => appointmentStore.upcomingAppointment
 .empty-state {
   text-align: center;
   padding: 2rem;
-  color: #999;
+  color: var(--text-muted);
 }
 
 .appointments-list {
@@ -277,14 +285,21 @@ const upcomingAppointments = computed(() => appointmentStore.upcomingAppointment
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: #f8f9fa;
+  background: var(--bg-hover);
   border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s;
+}
+
+.appointment-item:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
 }
 
 .appointment-time,
 .appointment-date {
   font-weight: 600;
-  color: #667eea;
+  color: var(--primary-color);
   min-width: 60px;
 }
 
@@ -294,17 +309,17 @@ const upcomingAppointments = computed(() => appointmentStore.upcomingAppointment
 
 .appointment-customer {
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .appointment-vehicle {
   font-size: 0.875rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .appointment-service {
   font-size: 0.875rem;
-  color: #999;
+  color: var(--text-muted);
   margin-top: 0.25rem;
 }
 
@@ -314,16 +329,19 @@ const upcomingAppointments = computed(() => appointmentStore.upcomingAppointment
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
+  border: 1px solid transparent;
 }
 
 .appointment-status.scheduled {
-  background: #e3f2fd;
-  color: #1976d2;
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border-color: #3b82f6;
 }
 
 .appointment-status.in-progress {
-  background: #fff3e0;
-  color: #f57c00;
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border-color: var(--warning-color);
 }
 
 @media (max-width: 768px) {

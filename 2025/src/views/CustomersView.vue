@@ -188,7 +188,8 @@ function closeDetails() {
 .page-title {
   font-size: 2rem;
   margin: 0;
-  color: #333;
+  color: var(--text-primary);
+  text-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
 }
 
 .search-bar {
@@ -198,15 +199,18 @@ function closeDetails() {
 .search-input {
   width: 100%;
   padding: 1rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--border-color);
   border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.2s;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  transition: all 0.2s;
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
 .customers-grid {
@@ -216,17 +220,19 @@ function closeDetails() {
 }
 
 .customer-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-color);
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .customer-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+  border-color: var(--primary-color);
 }
 
 .customer-header {
@@ -242,18 +248,18 @@ function closeDetails() {
 .customer-info h3 {
   margin: 0;
   font-size: 1.25rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .customer-email {
-  color: #667eea;
+  color: var(--primary-color);
   font-size: 0.875rem;
   margin: 0.25rem 0 0 0;
 }
 
 .customer-details {
   font-size: 0.875rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .customer-details p {
@@ -261,21 +267,21 @@ function closeDetails() {
 }
 
 .customer-address {
-  color: #999;
+  color: var(--text-muted);
   margin-top: 0.75rem;
 }
 
 .empty-state {
   text-align: center;
   padding: 4rem 2rem;
-  color: #999;
+  color: var(--text-muted);
   font-size: 1.125rem;
 }
 
 .empty-state-small {
   padding: 1rem;
   text-align: center;
-  color: #999;
+  color: var(--text-muted);
 }
 
 .btn {
@@ -289,22 +295,27 @@ function closeDetails() {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6);
+  border-color: var(--primary-light);
 }
 
 .btn-secondary {
-  background: #e0e0e0;
-  color: #333;
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
 }
 
 .btn-secondary:hover {
-  background: #d0d0d0;
+  background: var(--bg-card);
+  border-color: var(--primary-color);
 }
 
 .modal-overlay {
@@ -322,13 +333,14 @@ function closeDetails() {
 }
 
 .modal {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   max-width: 600px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--border-color);
 }
 
 .modal.large {
@@ -337,16 +349,17 @@ function closeDetails() {
 
 .modal-header {
   padding: 1.5rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--bg-darker);
 }
 
 .modal-header h2 {
   margin: 0;
   font-size: 1.5rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .close-btn {
@@ -354,7 +367,7 @@ function closeDetails() {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #999;
+  color: var(--text-muted);
   padding: 0;
   width: 32px;
   height: 32px;
@@ -366,8 +379,8 @@ function closeDetails() {
 }
 
 .close-btn:hover {
-  background: #f0f0f0;
-  color: #333;
+  background: var(--bg-hover);
+  color: var(--primary-color);
 }
 
 .modal-body {
@@ -376,10 +389,11 @@ function closeDetails() {
 
 .modal-footer {
   padding: 1.5rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+  background: var(--bg-darker);
 }
 
 .form-group {
@@ -390,21 +404,24 @@ function closeDetails() {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .form-input {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--border-color);
   border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.2s;
+  background: var(--bg-darker);
+  color: var(--text-primary);
+  transition: all 0.2s;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
 .detail-section {
@@ -413,15 +430,15 @@ function closeDetails() {
 
 .detail-section h3 {
   font-size: 1.125rem;
-  color: #333;
+  color: var(--text-primary);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #667eea;
+  border-bottom: 2px solid var(--primary-color);
 }
 
 .detail-section p {
   margin: 0.5rem 0;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .vehicles-list {
@@ -434,8 +451,9 @@ function closeDetails() {
   display: flex;
   gap: 1rem;
   padding: 1rem;
-  background: #f8f9fa;
+  background: var(--bg-hover);
   border-radius: 8px;
+  border: 1px solid var(--border-color);
 }
 
 .vehicle-icon {
@@ -444,13 +462,13 @@ function closeDetails() {
 
 .vehicle-info h4 {
   margin: 0 0 0.5rem 0;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .vehicle-info p {
   margin: 0.25rem 0;
   font-size: 0.875rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 @media (max-width: 768px) {

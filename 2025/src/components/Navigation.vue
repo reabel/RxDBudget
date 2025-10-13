@@ -56,8 +56,9 @@ const todayAppointmentCount = computed(() => appointmentStore.todayAppointments.
 
 <style scoped>
 .navigation {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  border-bottom: 2px solid var(--primary-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -73,11 +74,12 @@ const todayAppointmentCount = computed(() => appointmentStore.todayAppointments.
 }
 
 .nav-brand h1 {
-  color: white;
+  color: var(--text-primary);
   font-size: 1.5rem;
   margin: 0;
   padding: 1rem 0;
   font-weight: 600;
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
 }
 
 .nav-links {
@@ -93,26 +95,31 @@ const todayAppointmentCount = computed(() => appointmentStore.todayAppointments.
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
   text-decoration: none;
   border-radius: 8px;
   transition: all 0.2s;
   font-weight: 500;
   position: relative;
+  border: 1px solid transparent;
 }
 
 .nav-link:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
 }
 
 .nav-link.router-link-active {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+  background: var(--bg-card);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
 }
 
 .badge {
-  background: #ff6b6b;
+  background: var(--primary-color);
   color: white;
   border-radius: 12px;
   padding: 0.25rem 0.5rem;
@@ -120,10 +127,12 @@ const todayAppointmentCount = computed(() => appointmentStore.todayAppointments.
   font-weight: 600;
   min-width: 20px;
   text-align: center;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
 }
 
 .badge.alert {
   animation: pulse 2s infinite;
+  background: var(--primary-dark);
 }
 
 @keyframes pulse {

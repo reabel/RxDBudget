@@ -520,22 +520,27 @@ function formatDate(date?: Date): string {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6);
+  border-color: var(--primary-light);
 }
 
 .btn-secondary {
-  background: #e0e0e0;
-  color: #333;
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
 }
 
 .btn-secondary:hover {
-  background: #d0d0d0;
+  background: var(--bg-card);
+  border-color: var(--primary-color);
 }
 
 @media (max-width: 768px) {

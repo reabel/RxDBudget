@@ -9,16 +9,28 @@
   line-height: 1.6;
   font-weight: 400;
 
-  --primary-color: #667eea;
-  --secondary-color: #764ba2;
-  --success-color: #4caf50;
-  --warning-color: #ffa500;
-  --danger-color: #ff6b6b;
-  --text-dark: #333;
-  --text-medium: #666;
-  --text-light: #999;
-  --bg-light: #f5f5f5;
-  --border-color: #e0e0e0;
+  /* Dark Mode with Red Theme */
+  --primary-color: #ef4444;
+  --primary-dark: #dc2626;
+  --primary-light: #f87171;
+  --secondary-color: #991b1b;
+  --accent-color: #fca5a5;
+  
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  
+  --bg-dark: #0f0f0f;
+  --bg-darker: #0a0a0a;
+  --bg-card: #1a1a1a;
+  --bg-hover: #252525;
+  
+  --text-primary: #f5f5f5;
+  --text-secondary: #a3a3a3;
+  --text-muted: #737373;
+  
+  --border-color: #2a2a2a;
+  --border-light: #404040;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -30,8 +42,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: var(--bg-light);
-  color: var(--text-dark);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
 }
 
 #app {
@@ -41,6 +53,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.2;
+  color: var(--text-primary);
 }
 
 a {
@@ -50,7 +63,7 @@ a {
 }
 
 a:hover {
-  color: var(--secondary-color);
+  color: var(--primary-light);
 }
 
 button {
@@ -77,14 +90,14 @@ select {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--bg-darker);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--border-light);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--primary-color);
 }

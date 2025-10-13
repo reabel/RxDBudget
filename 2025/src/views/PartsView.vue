@@ -247,7 +247,8 @@ function getStockLabel(part: any) {
 .page-title {
   font-size: 2rem;
   margin: 0;
-  color: #333;
+  color: var(--text-primary);
+  text-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
 }
 
 .filters {
@@ -259,29 +260,36 @@ function getStockLabel(part: any) {
 .search-input {
   flex: 1;
   padding: 0.75rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--border-color);
   border-radius: 8px;
   font-size: 1rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  transition: all 0.2s;
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
 .category-select {
   padding: 0.75rem 1rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--border-color);
   border-radius: 8px;
   font-size: 1rem;
-  background: white;
+  background: var(--bg-card);
+  color: var(--text-primary);
   cursor: pointer;
   min-width: 200px;
+  transition: all 0.2s;
 }
 
 .category-select:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
 .stats-row {
@@ -291,28 +299,30 @@ function getStockLabel(part: any) {
 }
 
 .stat-badge {
-  background: white;
+  background: var(--bg-card);
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-color);
   font-size: 0.875rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .stat-badge.warning {
-  border-left: 4px solid #ffa500;
+  border-left: 4px solid var(--warning-color);
 }
 
 .stat-badge strong {
-  color: #333;
+  color: var(--text-primary);
   font-size: 1rem;
   margin-left: 0.5rem;
 }
 
 .parts-table-container {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-color);
   overflow-x: auto;
 }
 
@@ -322,33 +332,35 @@ function getStockLabel(part: any) {
 }
 
 .parts-table thead {
-  background: #f8f9fa;
+  background: var(--bg-darker);
 }
 
 .parts-table th {
   padding: 1rem;
   text-align: left;
   font-weight: 600;
-  color: #333;
-  border-bottom: 2px solid #e0e0e0;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-light);
 }
 
 .parts-table td {
   padding: 1rem;
-  border-bottom: 1px solid #f0f0f0;
-  color: #666;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
 }
 
 .parts-table tr:hover {
-  background: #f8f9fa;
+  background: var(--bg-hover);
 }
 
 .parts-table tr.low-stock {
-  background: #fff3e0;
+  background: rgba(245, 158, 11, 0.1);
+  border-left: 3px solid var(--warning-color);
 }
 
 .parts-table tr.out-of-stock {
-  background: #ffebee;
+  background: rgba(239, 68, 68, 0.1);
+  border-left: 3px solid var(--primary-color);
 }
 
 .stock-badge {
@@ -358,21 +370,25 @@ function getStockLabel(part: any) {
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
+  border: 1px solid transparent;
 }
 
 .stock-badge.in-stock {
-  background: #e8f5e9;
-  color: #2e7d32;
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--success-color);
+  border-color: var(--success-color);
 }
 
 .stock-badge.low-stock {
-  background: #fff3e0;
-  color: #f57c00;
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--warning-color);
+  border-color: var(--warning-color);
 }
 
 .stock-badge.out-of-stock {
-  background: #ffebee;
-  color: #c62828;
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .empty-state {
@@ -393,22 +409,27 @@ function getStockLabel(part: any) {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6);
+  border-color: var(--primary-light);
 }
 
 .btn-secondary {
-  background: #e0e0e0;
-  color: #333;
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
 }
 
 .btn-secondary:hover {
-  background: #d0d0d0;
+  background: var(--bg-card);
+  border-color: var(--primary-color);
 }
 
 .modal-overlay {
@@ -426,27 +447,29 @@ function getStockLabel(part: any) {
 }
 
 .modal {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   max-width: 800px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--border-color);
 }
 
 .modal-header {
   padding: 1.5rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--bg-darker);
 }
 
 .modal-header h2 {
   margin: 0;
   font-size: 1.5rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .close-btn {
@@ -454,7 +477,7 @@ function getStockLabel(part: any) {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #999;
+  color: var(--text-muted);
   padding: 0;
   width: 32px;
   height: 32px;
@@ -466,8 +489,8 @@ function getStockLabel(part: any) {
 }
 
 .close-btn:hover {
-  background: #f0f0f0;
-  color: #333;
+  background: var(--bg-hover);
+  color: var(--primary-color);
 }
 
 .modal-body {
@@ -476,10 +499,11 @@ function getStockLabel(part: any) {
 
 .modal-footer {
   padding: 1.5rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+  background: var(--bg-darker);
 }
 
 .form-row {
@@ -496,21 +520,24 @@ function getStockLabel(part: any) {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .form-input {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--border-color);
   border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.2s;
+  background: var(--bg-darker);
+  color: var(--text-primary);
+  transition: all 0.2s;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
 @media (max-width: 768px) {

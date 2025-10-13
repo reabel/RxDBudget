@@ -198,7 +198,8 @@ function getStatusClass(status: string) {
 .page-title {
   font-size: 2rem;
   margin: 0;
-  color: #333;
+  color: var(--text-primary);
+  text-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
 }
 
 .filters {
@@ -207,17 +208,20 @@ function getStatusClass(status: string) {
 
 .status-select {
   padding: 0.75rem 1rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--border-color);
   border-radius: 8px;
   font-size: 1rem;
-  background: white;
+  background: var(--bg-card);
+  color: var(--text-primary);
   cursor: pointer;
   min-width: 200px;
+  transition: all 0.2s;
 }
 
 .status-select:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
 .appointments-list {
@@ -226,16 +230,18 @@ function getStatusClass(status: string) {
 }
 
 .appointment-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-color);
   overflow: hidden;
   transition: all 0.2s;
 }
 
 .appointment-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+  border-color: var(--primary-color);
 }
 
 .appointment-header {
@@ -243,8 +249,8 @@ function getStatusClass(status: string) {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  background: #f8f9fa;
-  border-bottom: 1px solid #e0e0e0;
+  background: var(--bg-darker);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .appointment-date-block {
@@ -256,12 +262,12 @@ function getStatusClass(status: string) {
 .appointment-date-block .date {
   font-size: 1.125rem;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .appointment-date-block .time {
   font-size: 1rem;
-  color: #667eea;
+  color: var(--primary-color);
   font-weight: 500;
 }
 
@@ -305,7 +311,7 @@ function getStatusClass(status: string) {
 .appointment-body h3 {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .appointment-info {
@@ -317,20 +323,21 @@ function getStatusClass(status: string) {
 
 .appointment-info p {
   margin: 0.25rem 0;
-  color: #666;
+  color: var(--text-secondary);
   font-size: 0.875rem;
 }
 
 .appointment-description {
-  color: #666;
+  color: var(--text-secondary);
   margin: 1rem 0 0 0;
   padding: 1rem;
-  background: #f8f9fa;
+  background: var(--bg-hover);
   border-radius: 8px;
+  border: 1px solid var(--border-color);
 }
 
 .appointment-notes {
-  color: #999;
+  color: var(--text-muted);
   margin: 0.5rem 0 0 0;
   font-size: 0.875rem;
   font-style: italic;
@@ -339,7 +346,7 @@ function getStatusClass(status: string) {
 .empty-state {
   text-align: center;
   padding: 4rem 2rem;
-  color: #999;
+  color: var(--text-muted);
   font-size: 1.125rem;
 }
 
@@ -354,22 +361,27 @@ function getStatusClass(status: string) {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6);
+  border-color: var(--primary-light);
 }
 
 .btn-secondary {
-  background: #e0e0e0;
-  color: #333;
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
 }
 
 .btn-secondary:hover {
-  background: #d0d0d0;
+  background: var(--bg-card);
+  border-color: var(--primary-color);
 }
 
 .modal-overlay {
